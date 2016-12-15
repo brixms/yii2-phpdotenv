@@ -1,0 +1,26 @@
+{
+    "name": "brixms/yii2-phpdotenv",
+    "type": "yii2-extension",
+    "description": "Yii2 extension for .env / Dotenv / env() / getenv() ",
+    "keywords": ["yii2", ".env", "dotenv", "phpdotenv", "getenv"],
+    "license": "unlicense",
+    "support": {
+        "issues": "https://github.com/brixms/yii2-phpdotenv/issues",
+        "source": "https://github.com/brixms/yii2-phpdotenv"
+    },
+    "authors": [
+        {
+            "name": "brixms",
+            "email": "via@git.hub"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": "^2.0",
+        "vlucas/phpdotenv": ">=2.2"
+    },
+    "autoload": {
+        "files": {
+            "env_helper.php"
+        }
+    }
+}
