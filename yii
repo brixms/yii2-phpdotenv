@@ -1,0 +1,45 @@
+#!/usr/bin/env php
+<?php
+/**
+ * Yii console bootstrap file with dotenv
+ */
+
+// fcgi doesn't have STDIN and STDOUT defined by default
+defined('STDIN') or define('STDIN', fopen('php://stdin', 'r'));
+defined('STDOUT') or define('STDOUT', fopen('php://stdout', 'w'));
+
+// autoload
+require(__DIR__ . '/vendor/autoload.php');
+require(__DIR__ . '/vendor/yiisoft/yii2/Yii.php');
+
+// dotenv
+(new \Dotenv\Dotenv(__DIR__))->overload();
+
+// environment and main debug settings before loading config
+defined('YII_DEBUG') or define('YII_DEBUG', env('YII_DEBUG', true));
+defined('YII_ENV') or define('YII_ENV', env('YII_ENV', 'dev'));
+
+// configuration array
+$config = require(__DIR__ . '/config/console.php');
+
+// start
+$start = microtime(true);
+$application = new yii\console\Application($config);
+$exitCode = $application->run();
+
+// display message with runtime and exitcode
+if (env('DISPLAY_ENDING', true)) {
+    $end = microtime(true);
+    $string = "Started on %s\nStopped on %s\nExitcode: %s\nTotal runtime: %s seconds (%s minutes)";
+    echo sprintf(
+        $string,
+        date('Y-m-d H:i:s', $start),
+        date('Y-m-d H:i:s', time()),
+        $exitCode,
+        round($end - $start, 3),
+        round($end - $start) / 60
+    );
+}
+
+// exit with the intended exit code
+exit($exitCode);
