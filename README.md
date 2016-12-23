@@ -6,3 +6,6 @@ Package to automatically include .env via `vlucas/phpdotenv` in your yii2 applic
 2. edit `index.php` or your `yii` entry points to include `Dotenv` (after autoload has been required):
 
 `(new \Dotenv\Dotenv("your full .env file location"))->overload();`  
+
+# development branch extra features
+implements https://asset-packagist.org so you won't need fxp composer asset
